@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selection Button with Checkbox and JS</title>
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 600;
+        }
+
+        #root,
+        #root div {
+            display: block;
+        }
+
+        #root div {
+            margin: 5px;
+        }
+
+        h4 {
+            font-size: 1.2rem;
+        }
+
+        div {
+            display: inline-block;
+        }
+
+        label {
+            padding: 10px 30px;
+            color: #ffffff;
+            background: #333333;
+            display: inline-block;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        .name:checked+label {
+            background: rgb(21, 124, 0);
+        }
+
+        button {
+            display: inline-block;
+            padding: 10px 30px;
+            color: #ffffff;
+            background: #0057da;
+            border: none;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <div class="selection">
+        <div>
+            <input class="name" id="1" type="checkbox" value="Jhon" hidden />
+            <label for="1">Jhon</label>
+        </div>
+        <div>
+            <input class="name" id="2" type="checkbox" value="Alex" hidden />
+            <label for="2">Alex</label>
+        </div>
+        <div>
+            <input class="name" id="3" type="checkbox" value="Alisha" hidden />
+            <label for="3">Alisha</label>
+        </div>
+        <div>
+            <input class="name" id="4" type="checkbox" value="David" hidden />
+            <label for="4">David</label>
+        </div>
+        <div>
+            <input class="name" id="5" type="checkbox" value="Emma" hidden />
+            <label for="5">Emma</label>
+        </div>
+        <div>
+            <button id="btn">Submit</button>
+        </div>
+    </div>
+
+    <script>
+        const root = document.getElementById('root');
+        const names = document.querySelectorAll('.name');
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+            let values = [];
+            names?.forEach(name => name.checked ? values.push(name.value) : '');
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <h4>${values.join(', ')}</h4>
+            `;
+            root.appendChild(div);
+
+            names?.forEach(name => name.checked = name.unchecked);
+        })
+
+    </script>
+</body>
+
+</html>
